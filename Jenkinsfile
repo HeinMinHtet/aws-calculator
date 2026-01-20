@@ -1,12 +1,12 @@
 pipeline {
     agent any
 
-    environment {
-        DOCKER_IMAGE = 'my-aws-calculator'
-        DOCKER_TAG = "build-${env.BUILD_NUMBER}"
-        DOCKER_REGISTRY = 'https://my-docker-registry.com'
-        DOCKER_CREDENTIALS = credentials('my-docker-credentials')
-    }
+    // environment {
+    //     DOCKER_IMAGE = 'my-aws-calculator'
+    //     DOCKER_TAG = "build-${env.BUILD_NUMBER}"
+    //     DOCKER_REGISTRY = 'https://my-docker-registry.com'
+    //     DOCKER_CREDENTIALS = credentials('my-docker-credentials')
+    // }
 
     stages {
         stage('Checkout') {
@@ -27,18 +27,18 @@ pipeline {
             }
         }
 
-        stage('Build Docker Image') {
-            steps {
-                sh "docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} ."
-            }
-        }
+        // stage('Build Docker Image') {
+        //     steps {
+        //         sh "docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} ."
+        //     }
+        // }
 
-        stage('Push Docker Image') {
-            steps {
-                withDockerRegistry(credentialsId: 'my-docker-credentials', url: "${DOCKER_REGISTRY}") {
-                    sh "docker push ${DOCKER_IMAGE}:${DOCKER_TAG}"
-                }
-            }
-        }
+        // stage('Push Docker Image') {
+        //     steps {
+        //         withDockerRegistry(credentialsId: 'my-docker-credentials', url: "${DOCKER_REGISTRY}") {
+        //             sh "docker push ${DOCKER_IMAGE}:${DOCKER_TAG}"
+        //         }
+        //     }
+        // }
     }
 }
