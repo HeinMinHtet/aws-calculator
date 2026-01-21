@@ -7,6 +7,10 @@ pipeline {
     //     DOCKER_REGISTRY = 'https://my-docker-registry.com'
     //     DOCKER_CREDENTIALS = credentials('my-docker-credentials')
     // }
+    tools {
+        // This name must match the name you gave Node in "Global Tool Configuration"
+        nodejs 'node' 
+    }
 
     stages {
         stage('Checkout') {
