@@ -5,13 +5,14 @@ const isExport = process.env.NEXT_EXPORT === "true";
 const nextConfig: NextConfig = {
   reactCompiler: true,
 
-  output: isExport ? "export" : undefined,
-
-  basePath: isExport ? "/aws-calculator" : "",
-
-  images: {
-    unoptimized: isExport,
-  },
+  // GitHub Pages only
+  ...(isExport && {
+    output: "export",
+    basePath: "/aws-calculator",
+    images: {
+      unoptimized: true,
+    },
+  }),
 };
 
 export default nextConfig;
