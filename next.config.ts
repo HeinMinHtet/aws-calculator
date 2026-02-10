@@ -1,12 +1,16 @@
 import type { NextConfig } from "next";
 
+const isExport = process.env.NEXT_EXPORT === "true";
+
 const nextConfig: NextConfig = {
-  /* config options here */
   reactCompiler: true,
-  output: 'export',
-  basePath: "/aws-calculator",
+
+  output: isExport ? "export" : undefined,
+
+  basePath: isExport ? "/aws-calculator" : "",
+
   images: {
-    unoptimized: true,
+    unoptimized: isExport,
   },
 };
 

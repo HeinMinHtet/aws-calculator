@@ -26,8 +26,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      # ✅ IMPORTANT: force static export for Pages
       - name: Build application
-        run: npm run build
+        run: NEXT_EXPORT=true npm run build
 
       # =====================
       # GitHub Pages
